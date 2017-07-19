@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="czxy.qsgl.dao.fangke">
+	<insert id="save" parameterType="czxy.qsgl.entity.FangKe">
+		insert into people
+		(id,LFname,Idcard,time,telephone,reson,BFname,louhao,sushehao,time1)
+		values(#{id},#{LFname},#{Idcard},#{time},#{telephone},#{reson},#{BFname},#{louhao},#{sushehao},#{time1})
+	</insert>
+	<select id="search" parameterType="string" resultType="czxy.qsgl.entity.FangKe">
+		select * from people where time like concat('%',#{time},'%') order by time
+	</select>
+	<delete id="delete" parameterType="string">
+		delete from people where time=#{time}
+	</delete>
+	<select id="findAll" resultType="czxy.qsgl.entity.FangKe">
+		select * from people
+	</select>
+	<update id = "update" parameterType="java.util.Map">
+		update  people  set time1=#{time1} where time=#{time}
+	</update>
+
+</mapper>

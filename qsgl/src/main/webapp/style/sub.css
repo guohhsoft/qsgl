@@ -1,0 +1,79 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0;background-image:url(../img/pic1.png);position:relative; background-size:cover; overflow:hidden;}
+.bgcol{ max-width:1300px; margin:0 auto;min-height:900px;}
+.tit img{ position:relative; left:50%; margin-left:-210px; top:30px;}
+.but{width:900px; position:absolute; left:50%; margin-left:-450px; top:250px;}
+.left,.right{ float:left; width:50%;cursor:pointer;}
+.left img{ padding-right:50px;}
+.right img{ padding-left:50px;}
+.bot{ background-color:#62aefd;
+  border-radius: 5px;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.3),inset 0px 1px 2px 0px rgba(255, 255, 255, 0.004);
+  position: absolute;
+  left:1100px;
+  top:500px;
+  right:50px;
+  bottom:50px;
+  width: 100px;
+  height: 40px;
+  z-index: 140;
+  line-height:36px; text-align:center; font-size:14px;
+  color:#fff;cursor:pointer;
+}
+.tet{ width:340px; position:absolute; right:30px; top:80px;}
+.one{ float:left; width:50%; color:#000; font-size:12px;}
+.one input{ width:100px; height:20px; margin:0; padding:0;}
+#model{
+	position:absolute;
+	display:none;
+	padding:0;
+	margin:0;
+	width:100%;
+	height:100%;
+	background:#000;
+	opacity:0.9;
+	z-index:20;
+}
+.btn{cursor:pointer; }
+#changForm{
+	box-sizing:border-box;
+	position:absolute;
+	width:600px;
+	height:500px;
+	left:50%;
+	top:50%;
+	margin-left:-300px;
+	margin-top:-340px;
+	background-color:rgb(0,162,255);
+	border-radius:20px;
+	opacity:0.5;
+	border:1px solid #aaa；
+	z-index:50;
+	padding-top:100px;
+	opacity:1;
+}
+#changeBtn{cursor:pointer; color:white; }
+#changForm p{
+	margin:5px auto;
+	width:360px;
+	height:30px;
+	margin-top:30px;
+}
+#mainPage{
+	position:absolute;
+	z-index:1;
+	width:100%;
+	height:100%;
+}
+#commit{
+	margin-left:50px;
+}
+#roback{
+	margin-left:110px;
+}
+.btn{
+	border-radius:5px;
+	width:50px;
+	height:30px;
+}

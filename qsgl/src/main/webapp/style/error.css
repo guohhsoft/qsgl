@@ -1,0 +1,19 @@
+@charset "utf-8";
+
+body{
+    background-color: #00629f;
+    background-image: url(../img/error_power.png);
+    background-position: center 40%;
+    background-repeat: no-repeat;
+}
+#error
+{
+    width: 960px;
+    text-align: center;
+    margin-top: 400px;
+}
+#error a:hover
+{
+    text-decoration: underline;
+    cursor: pointer;
+}

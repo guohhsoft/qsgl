@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="czxy.qsgl.dao.systemDao">
+	<select id="findAlllou" 
+		resultType="czxy.qsgl.entity.Louhao">
+		select * from louhao
+	</select>
+	
+	<select id="findAllde" 
+		resultType="czxy.qsgl.entity.Department">
+		select * from department
+	</select>
+	
+	<delete id="deletel" parameterType="string">
+		delete from louhao where louhao=#{louhao}
+	</delete>
+	
+	<delete id="deleted" parameterType="string">
+		delete from department where department=#{department}
+	</delete>
+	
+	<insert id="savel" parameterType="czxy.qsgl.entity.Louhao" >
+		insert into louhao (id,louhao) values (#{id},#{louhao})
+	</insert>
+	
+	<insert id="saved" parameterType="czxy.qsgl.entity.Department" >
+		insert into department (id,department) values (#{id},#{department})
+	</insert>
+</mapper>

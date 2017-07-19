@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="czxy.qsgl.dao.studentDao">
+	<select id="search" resultType="czxy.qsgl.entity.Student" parameterType="String">
+		select * from student where
+			 studentId like concat('%',#{name},'%') 
+			 or
+			 name like concat('%',#{name},'%')
+	</select>
+	<select id="findAll" resultType="czxy.qsgl.entity.Student" parameterType="String">
+		select * from student where department like concat('%',#{department},'%') 
+	</select>
+	<insert id="save" parameterType="czxy.qsgl.entity.Student">
+		insert into student 
+			(studentId,name,sex,department,louhao,sushehao,addr)
+			values(#{studentId},#{name},#{sex},#{department},#{louhao},#{sushehao},#{addr})
+	</insert>
+	<delete id="delete" parameterType="string">
+	     delete from student where studentId=#{studentId}
+	</delete>
+	<update id="updata" parameterType="czxy.qsgl.entity.Student">
+		update student set name=#{name},
+						   sex=#{sex},
+						   department=#{department},
+						   louhao=#{louhao},
+						   sushehao=#{sushehao},
+						   addr=#{addr}
+						   where studentId=#{studentId}
+	</update>
+	<select id="findById" resultType="czxy.qsgl.entity.Student" parameterType="String">
+		select * from student where studentId=#{studentId}
+	</select>
+	
+</mapper>

@@ -1,0 +1,48 @@
+@charset "utf-8";
+/* CSS Document */
+body{background-image:url(../img/bg1.png); background-repeat:repeat-x; background-size:cover; margin:0; padding:0;}
+h1{ font-family:宋体; font-size:30px; color:#0f79dc; text-align:center; margin-top:50px;}
+span{ font-size:12px; color:#E9282C;}
+.bg img{ width:100%; position:absolute;
+top:25%;}
+.tbg{
+  border-radius: 10px;
+  background-color: rgb(1, 187, 199);
+  opacity: 0.4;
+  position: absolute;
+  left:50%; margin-left:-275px;
+  top: 50%; margin-top:-175px;
+  width: 550px;
+  height: 350px;
+  z-index: 1;
+}
+.sbg{
+  border-radius: 10px;
+  background-color: rgb(252, 253, 253);
+  opacity: 0.8;
+  position: absolute;
+  left:50%; margin-left:-250px;
+  top:50%; margin-top:-150px;
+  width: 500px;
+  height: 300px;
+  z-index: 2;
+}
+.left{ float:left; width:40%; height:100%; background-image:url(../img/people.png); background-repeat:no-repeat;
+background-position:center center;}
+.right{ float:left; width:60%; height:100%}
+.tet{width:180px; height:30px; margin-top:20px; border-radius:5px; font-size:12px; font-family:微软雅黑; line-height:30px; background-color:#fff; padding-left:5px; color:#999;}
+.dl,.qv{width:70px; height:30px; margin-top:20px; border-radius:5px; font-size:12px; font-family:微软雅黑; line-height:30px; background-color:#07c4d0; text-align:center; color:#fff; border:none; cursor:pointer; margin-bottom:10px;}
+.qv{ margin-left:35px;}
+.ctrl{ padding-top:50px;}
+.ctrl a{font-size:12px; color:#999;}
+.clearfix{ clear:both;}
+
+
+
+
+
+
+
+
+
+

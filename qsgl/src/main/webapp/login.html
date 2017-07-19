@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" content="text/html">
+<link href="style/style.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/login.js"></script>
+
+<script >
+    $(function(){ 
+    	$("#login").click(login);
+   
+    })
+
+</script>
+<title>登录界面</title>
+</head>
+
+
+<body>
+<div class="bg">
+	<h1>大学生寝室管理系统</h1>
+	<img src="img/cen.png">
+    <div class="tbg"></div>
+    <div class="sbg">
+    	<div class="left"></div>
+        <div class="right">
+        	<div class="ctrl">
+        	   <input class="tet" type="text"  id="count" placeholder="请输入用户名"><span id="count_msg"></span>
+           	   <input class="tet" type="password" id="password" placeholder="请输入密码"><span id="password_msg"></span>
+               <div class="clearfix"></div>
+               <input class="dl" type="button" value="登录" id="login">
+               <input class="qv" type="button" value="取消" id="quxiao">
+               <div class="clearfix"></div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+</body> 
+
+</html>

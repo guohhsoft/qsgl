@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="czxy.qsgl.dao.DormitoryDao">
+	<select id="search" parameterType="java.util.Map"
+		resultType="czxy.qsgl.entity.Dormitory">
+		select * from dormitory where (louhao=#{louhao} and sushehao=#{sushehao}) or (louhao=#{louhao} and department like concat('%',#{department},'%'))
+	</select>
+	<select id="find" parameterType="string"
+	   resultType="czxy.qsgl.entity.Dormitory">
+	   select * from dormitory where louhao=#{louhao} order by department
+	 </select>
+	 <insert id="save" parameterType="czxy.qsgl.entity.Dormitory">
+	 	insert into dormitory (id,sushehao,louhao,max,now,department,depict)
+	 	values(#{id},#{sushehao},#{louhao},#{max},#{now},#{department},#{depict});
+	</insert>
+	 <update id="update"  parameterType="czxy.qsgl.entity.Dormitory">
+	 	update dormitory set depict=#{depict},
+	 	                     department=#{department},
+	 	                     max=#{max} 
+	 	                     where louhao=#{louhao} and sushehao=#{sushehao}
+	 </update>
+	 <insert id="saveStudent" parameterType="czxy.qsgl.entity.Student">
+		insert into student 
+			(studentId,name,sex,department,louhao,sushehao,addr)
+			values(#{studentId},#{name},#{sex},#{department},#{louhao},#{sushehao},#{addr})
+	 </insert>
+	 <select id="chakan"  parameterType="java.util.Map"
+	 resultType="czxy.qsgl.entity.Student">
+	 	select * from student where louhao=#{louhao} and sushehao=#{sushehao}
+	 </select>
+	 
+	
+</mapper>

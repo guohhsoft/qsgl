@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="style/calendar.css">
+<link rel="stylesheet" href="style/bootstrap.css">
+<script src="js/jquery.min.js"></script>
+<script src="js/people.js"></script>
+<script src="js/close.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+	$(function(){
+		//加载信息
+		addpeople();
+		//搜索时间
+		$("#search").click(search);
+		//保存时间
+		$("#baocun").click(save);
+		//退出事件
+		$("#tuichu").click(function(){
+			window.location.href="ht.html"
+		});
+		
+		
+	});
+</script>
+<link rel="stylesheet" href="style/people.css"/>
+<style>
+
+</style>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="tit">
+	<img src="img/tit_2.png">
+    	<span id="name"></span>
+        <input type="button" value="退出" class="btn" id="tuichu">
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="margin-top: 100px;">
+            <div class="modal-body">
+                <div class="table-responsive" style="padding:0 20px">
+                        <form  action="" id="form-register">
+                            <div class="form-group">
+                                <label class="control-label" for="lfname">访问人姓名</label>
+                                <input class="form-control" id="lfname" size="20">
+                                <span id="lfname_1"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="idcard">身份证号：</label>
+                                <input class="form-control" id="idcard">
+                                <span id="idcard_1"></span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="telephone">联系电话：</label>
+                                <input class="form-control" id="telephone">
+                                <span id="telephone_1"></span>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label" for="reson">访问事由：</label>
+                                <input class="form-control" id="reson">
+                                <span id="reson_1"></span>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label" for="bfname">被访人姓名：</label>
+                                <input class="form-control" id="bfname">
+                                <span id="bfname_1"></span>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label" for="louhao">楼号：</label>
+                                <input class="form-control" id="louhao">
+                                <span id="louhao_1"></span>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label" for=sushehao>宿舍号：</label>
+                                <input class="form-control" id="sushehao">
+                                <span id="sushehao_1"></span>
+                            </div>
+                            
+                        </form>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top:none;">
+                <button type="button" class="btn btn-primary" id="baocun">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="con">
+	<div class="first">
+		 <span>外访人员登记信息</span>
+        <div class="search">
+        	<input id="searchpeople" type="text" style="width:230px; height:22px;">
+            <input id="search" type="button" style="width:33px; height:26px; background-image:url(img/go.png); border:none; cursor:pointer;">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <!-- 登记 -->
+    <div class="second">
+    	<input type="button" id="cli" data-toggle="modal" data-target="#myModal">
+                               
+    </div>
+    <div class="clearfix"></div>
+    <table class="message">
+        <thead>
+        <tr>            
+            <th  style="width:87px;">访客姓名</th>
+            <th  style="width:192px;">身份证号</th>
+            <th  style="width:104px;">访客电话</th>
+            <th  style="width:88px;">被访姓名</th>
+            <th  style="width:90px;">楼号</th>
+            <th  style="width:90px;">宿舍号</th>
+            <th  style="width:90px;">访问事由</th>
+            <th  style="width:180px;">来访时间</th>
+            <th  style="width:176px;">离开时间</th>
+            <th  style="width:92px;"><input type='button' value='离开' class='likai'></th>
+        </tr>
+        
+        </thead>
+        <tbody id="people">
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.anniu{ width:300px; line-height:80px;}
+.anniu input{ width:70px; height:30px;outline:none;border: none;margin: 0;padding: 0; border-radius:2px; font-size:16px; cursor:pointer; margin:0 20px; background-color:blue; color:#fff;}
+</style>
+<meta charset="UTF-8">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/manager.js"></script>
+
+<script >
+	$(function(){
+		var name=sessionStorage["name"];
+		$.get("http://localhost:8080/qsgl/check.do?name="+name,function(data){
+			var user=data.data;
+			$("#name").val(user.name);
+			$("#password").val(user.password);
+			$("#job").val(user.job);
+			$("#quanxian").val(user.quanxian);
+			$("#tel").val(user.telephone);
+			$("#louhao").val(user.louhao);
+			$("#commit").click(function(){
+				updatem(user);
+			});
+			$("#roback").click(function(){
+				window.location.href="../manager.html";
+			});
+		});
+	});
+</script>
+<title>Insert title here</title>
+</head>
+<body background="../img/bg_4.png">
+	<h1 style="font-size:30px; font-weight:normal; text-align:center; line-height:30px; padding:10px 0; color:blue;">修改管理员模块</h1>
+    <form action="" method="get" style="width:960px; height:420px; margin:auto auto; background-color:#fff; border-radius:20px;">
+        <table style="width:500px; margin:0 auto; padding-top:10px;">
+        	<tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">姓名：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="name"></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">密码：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="password"></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">电话：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="tel"></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">工作：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="job"></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">权限：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="quanxian" ></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">楼号：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="louhao" ></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;"></td>
+        		<td></td>
+        	</tr>
+            <tr class="anniu">
+        		<td colspan="2" align="center"><input type="button" value="确认" id="commit"><input type="button" value="取消" id="roback"></td>
+        	</tr>
+        </table>
+    </form>
+</body>
+</html>

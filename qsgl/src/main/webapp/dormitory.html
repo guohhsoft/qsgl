@@ -1,0 +1,177 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.js"></script>
+<script src="js/close.js"></script>
+<script src="js/dormitory.js"></script>
+<script src="js/cookie_util.js"></script>
+<script src="js/system.js"></script>
+<script>
+	$(function(){
+		findlou();
+		
+//搜索事件
+		$("#search").click(function(){
+			var louhao = $("#depSel").val();
+			var lh= louhao.substring(0,1);
+			var msg = $("#searchdormitory").val();
+			$("#dormitory").empty();
+			$.ajax({
+				url:"http://localhost:8080/qsgl/dormitory/search.do",
+				data:{"sushehao":msg,"louhao":lh},
+				dataType:"json",
+				type:"post",
+				success:function(res){
+
+					if(res.data.length!=null){
+					for(var i=0;i<res.data.length;i++){
+						createDm(res.data[i]);
+					}
+					//点击查看事件
+					$(".chakan").on("click",function(){
+						$(".xian").show();
+						var lou=$(this).parents("tr").find("td:first").html();
+						var sushehao=$(this).parents("tr").find("td:first").next().html();
+						//加载学生信息
+						$(".biao_1").empty();
+						$.ajax({
+							url:"http://localhost:8080/qsgl/dormitory/findStudent.do",
+							data:{"louhao":lou,"sushehao":sushehao},
+							dataType:"json",
+							type:"post",
+							success:function(res){
+								var length = res.data.length;
+								$("#sushe").html(lou+"号楼"+sushehao+"寝室");
+								$("#now").html(length+"人");
+								for(var i=0;i<length;i++){
+									var student = res.data[i]
+									createSM(student);
+								}
+								//加载完  点击修改 触发事件
+								$(".del").on("click",function(){
+									var studentId=$(this).parents("tr").find("td:first").html();
+									sessionStorage.studentId=studentId;
+									window.location.href="dormitory/update.html"
+								})
+							},
+							error:function(){
+								alert("加载失败");
+								}
+							});
+					})
+
+					}
+					
+				},
+				error:function(){
+					alert("搜索失败");
+				}
+			});
+		});
+		
+		//增加事件
+		$("#add").click(function(){
+			window.location.href="dormitory/adddm.html"
+		});
+		//退出事件
+		$("#tuichu").click(function(){
+			window.location.href="ht.html"
+		});
+	});
+</script>
+<link rel="stylesheet" href="style/dormitory.css"/>
+<style>
+	
+</style>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="tit">
+	<img src="img/tit_3.png">
+    	<span id="name"></span>
+        <input type="button" value="退出" class="btn" id="tuichu">
+</div>
+<div class="con">
+	<div class="first">
+    	<div class="nav">
+        	<h1>楼号</h1>
+            <select id="depSel" style=" width:100px; line-height:30px; position:absolute; z-index:1;">
+            
+            </select>
+        </div>
+        <div class="search">
+        	<input id="searchdormitory" type="text" style="width:230px; height:22px;">
+            <input id="search" type="button" style="width:33px; height:26px; background-image:url(img/go.png); border:none; cursor:pointer;">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="second">
+    	<input type="button" id="add">
+    </div>
+    <div class="clearfix"></div>
+    <table width="1436" class="message">
+        <thead>
+        <tr>
+            <th>楼号</th>
+            <th>宿舍号</th>
+            <th>系别</th>
+            <th>寝室规格</th>
+            <th>信息描述</th>
+            <th>信息修改</th>
+            <th>查看</th>
+        </tr>
+        </thead>
+        <tbody id="dormitory"> 	
+        </tbody>
+    </table>
+    <div class="xian">
+	<div class="tit_1">
+    <p><span id="sushe"></span>&nbsp;&nbsp;&nbsp;寝室规格：<span id="max"></span>&nbsp;&nbsp;&nbsp;现住人数：<span id="now"></span>&nbsp;&nbsp;<input type="button" value="添加" style="width:40px" id="addstudent"><input type="button" value="退出" style="width:40px; margin-left:10px;" id="tc"></p>
+    </div>
+    <table class="biao">
+    	<thead>
+        	<tr>
+            	<th>学号</th>
+                <th>姓名</th>
+                <th style="width:70px;">性别</th>
+                <th>系别</th>
+                <th style="width:148px;">家庭住址</th>
+                <th style="width:85px;">修改</th>
+            </tr>
+        </thead>
+   
+    <tbody class="biao_1">
+    	
+        <tr>
+           <td><span>学号</span></td>
+           <td><span>姓名</span></td>
+           <td style="width:70px;"><span>性别</span></td>
+           <td><span>系别</span></td>
+           <td style="width:148px;"><span>家庭住址</span></td>
+           <td style="width:85px;"><input type="button" value="修改" style="cursor:pointer;"></td>
+        </tr>   	
+    </tbody> 
+    </table>
+	</div>
+</div>
+<script>
+$("#addstudent").on("click",(function(){
+	var msg = $("#sushe").html();
+	var msg1=msg.substring(0,1);
+	var msg2=msg.substring(3,6);
+  	sessionStorage.msg1=msg1;
+	sessionStorage.msg2=msg2;
+	//增加功能
+	//调用student的js
+	window.location.href="dormitory/add.html";
+	
+}));
+
+$("#tc").click(function(){
+	$(".xian").hide()
+	})
+</script>
+</body>
+</html>

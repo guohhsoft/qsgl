@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+<script src="js/jquery.min.js"></script>
+<script src="js/student.js"></script>
+<script src="js/close.js"></script>
+<script src="js/cookie_util.js"></script>
+
+<script>
+	$(function(){
+		var cook = getCookie("name");
+		if(cook==null){
+			window.location.href="login.html";
+		}else{
+			$("#name").html(cook);
+		}
+		$.ajax({
+			url:"http://localhost:8080/qsgl/department/find.do",
+			dataType:"json",
+			Type:"post",
+			success:function(res){	
+				console.log(res);
+				if(res.data.length!=null){
+					for(var i=0;i<res.data.length;i++){
+						var department=res.data[i];
+						$op="<option>"+department.department+"</option>";
+						$("#depSel").append($op);
+					}
+				}
+				//用于加载页面
+				var department=$("#depSel").val();
+				addstudent(department);
+				$("#depSel").change(function(){
+					department=$(this).val();
+					$("#student").empty();
+					addstudent(department);
+				});
+			},
+			error:function(){
+				alert("加载失败");
+			}
+	});
+		
+		//搜索事件
+		$("#search").click(function(){
+			var name = $("#searchstudent").val();
+			search(name);
+		});
+		//退出事件
+		$("#tuichu").click(function(){
+			window.location.href="ht.html"
+		});
+		//增加事件
+		$("#add").click(function(){
+			window.location.href="student/add.html";
+		});
+		
+	});
+</script>
+<link rel="stylesheet" href="style/student.css"/>
+<style>
+
+</style>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+
+<body>
+<div class="tit">
+	<img src="img/tit_1.png">
+    	<span id="name"></span>
+        <input type="button" value="退出" class="btn" id="tuichu">
+</div>
+
+<div class="con">
+	<div class="first">
+    	<div class="nav">
+        	<h1>学生信息</h1>
+            <select id="depSel" style=" width:100px; line-height:30px; position:absolute; z-index:1;">
+            </select>
+        </div>
+        <div class="search">
+        	<input id="searchstudent" type="text" style="width:230px; height:22px;">
+            <input id="search" type="button" style="width:33px; height:26px; background-image:url(img/go.png); border:none; cursor:pointer;">
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="second">
+    	<input type="button" id="add">
+    </div>
+    <div class="clearfix"></div>
+    <table class="message">
+        <thead>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>系别</th>
+            <th>楼号</th>
+            <th>宿舍号</th>
+            <th>修改</th>
+            <th>删除</th>
+            <th class="addrTd">地址</th>
+        </tr>
+        </thead>
+        <tbody id="student">
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

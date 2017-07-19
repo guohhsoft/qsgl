@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="czxy.qsgl.dao.managerDao">
+	<select id="findByName" parameterType="string"
+		resultType="czxy.qsgl.entity.Manager">
+		select * from manager where name=#{name}
+	</select>
+	<insert id="save" parameterType="czxy.qsgl.entity.Manager">
+		insert into manager
+		(id,name,password,job,telephone,quanxian,louhao,sushehao)
+		values(#{id},#{name},#{password},#{job},#{telephone},#{quanxian},#{louhao},#{sushehao})
+	</insert>
+	<update id="updata" parameterType="czxy.qsgl.entity.Manager">
+		update manager set password=#{password}, 
+						   <if test="telephone!=null">
+						   	  telephone=#{telephone},
+						   </if>
+						   <if test="job!=null">
+						   	 job=#{job}
+						   </if>
+						    where id=#{id}
+	</update>
+	<delete id="delete" parameterType="string">
+	   delete from manager  where name=#{name}
+	</delete>
+	<select id="findByAll" resultType="czxy.qsgl.entity.Manager">
+		select * from manager
+	</select>
+	<select id="search"   parameterType="string"  resultType="czxy.qsgl.entity.Manager">
+		select * from  manager where name like concat('%',#{name},'%')
+	</select>
+	
+
+	
+	<update id="updatem" parameterType="czxy.qsgl.entity.Manager">
+		update manager set name=#{name},
+						   password=#{password},
+						   louhao=#{louhao},
+						   sushehao=#{sushehao},
+						   quanxian=#{quanxian},
+						   telephone=#{telephone},
+						   job=#{job}
+						    where id=#{id}
+	</update>
+
+	
+</mapper>

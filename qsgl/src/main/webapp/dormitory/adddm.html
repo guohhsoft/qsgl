@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+.anniu{ width:300px; line-height:80px;}
+.anniu input{ width:70px; height:30px;outline:none;border: none;margin: 0;padding: 0; border-radius:2px; font-size:16px; cursor:pointer; margin:0 20px; background-color:blue; color:#fff;}
+</style>
+<meta charset="UTF-8">
+<script src="../js/jquery.min.js"></script>
+<script src="../js/dormitory.js"></script>
+<script >
+	$(function(){
+		$.ajax({
+			url:"http://localhost:8080/qsgl/louhao/find.do",
+			dataType:"json",
+			Type:"post",
+			success:function(res){
+				console.log(res);
+				if(res.data.length!=null){
+					for(var i=0;i<res.data.length;i++){
+						var louhao=res.data[i];
+						$op="<option>"+louhao.louhao+"</option>";
+						$("#louhao").append($op);
+					}
+				}
+			},
+			error:function(){
+				alert("加载失败");
+				}
+			});
+		$.ajax({
+			url:"http://localhost:8080/qsgl/department/find.do",
+			dataType:"json",
+			Type:"post",
+			success:function(res){	
+				console.log(res);
+				if(res.data.length!=null){
+					for(var i=0;i<res.data.length;i++){
+						var department=res.data[i];
+						$op="<option>"+department.department+"</option>";
+						$("#department").append($op);
+					}
+				}
+			},
+			error:function(){
+				alert("加载失败");
+			}
+	});
+		$("#roback").click(function(){
+			window.location.href="../dormitory.html"		
+		});
+		$("#commit").click(adddm)
+	});
+	
+</script>
+<title>Insert title here</title>
+</head>
+<body background="../img/bg_4.png">
+	<h1 style="font-size:30px; font-weight:normal; text-align:center; line-height:30px; padding:10px 0; color:blue;">寝室信息录入</h1>
+    <form action="" method="get" style="width:960px; height:500px; margin:auto auto; background-color:#fff; border-radius:20px;">
+        <table style="width:500px; margin:0 auto; padding-top:10px;">
+        	
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">楼号：</td>
+        		<td> <select id="louhao" style=" width:300px; height:30px;z-index:1;">  
+            </select><span id="warning_2"></span></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">寝室号：</td>
+        		<td><input type="text" style="width:300px; height:30px;" id="sushehao"><span id="warning"></span></td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">系别：</td>
+        		<td> <select id="department" style=" width:300px; height:30px;  z-index:1;">
+            </select><span id="warning_3"></span></td>
+        	</tr>
+            <tr>
+        	 <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">寝室规格：</td>
+        		<td> <select id="size" style=" width:300px; height:30px;  z-index:1;">
+            <option selected>四人间</option>
+            <option>六人间</option>
+            <option>八人间</option>
+            </select>
+        		</td>
+        	</tr>
+        	<tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;">描述信息：</td>
+        		<td> <select id="message" style=" width:300px; height:30px;  z-index:1;">
+            <option selected>单一寝室</option>
+            <option>混合寝室</option>
+            </select>
+        		</td>
+        	</tr>
+            <tr>
+        		<td style="text-align:center; font-size:16px; line-height:50px; color:blue;"></td>
+        		<td></td>
+        	</tr>
+            <tr class="anniu">
+        		<td colspan="2" align="center"><input type="button" value="确认" id="commit"><input type="button" value="取消" id="roback"></td>
+        	</tr>
+        </table>
+    </form>
+</body>
+</html>
